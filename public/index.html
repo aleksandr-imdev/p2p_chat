@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2P Video Chat</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="margin-0 padding-0">
+    <div class="container-fluid">
+        <div class="container d-flex justify-content-center align-items-center" style="height: 10vh;">
+            <h1 class="text-center row">P2P Video Chat</h1>
+        </div>
+        <div class="" style="height: 80vh;">
+            <div class="row container-fluid m-0 h-100">
+                <div class="col-6 d-flex justify-content-center align-items-center">
+                    <video class="rounded bg-black mw-100 mh-100" id="localVideo" autoplay muted></video>
+                </div>
+                <div class="col-6 d-flex justify-content-center align-items-center">
+                    <video class="rounded bg-black mw-100 mh-100" id="remoteVideo" autoplay></video>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-light mx-6" style="height: 10vh;">
+            <div class="col-4 d-flex justify-content-center align-items-center h-100 state-idle">
+                <button class="btn btn-primary" onclick="createRoom()">Создать комнату</button>
+            </div>
+            <div class="col-5 d-flex justify-content-center align-items-center h-100 state-idle">
+                <button class="btn btn-primary" onclick="joinRoom()">Присоединиться к комнате</button>
+            </div>
+            <div class="col-3 d-flex justify-content-center align-items-center h-100 state-idle">
+                <input type="text" id="roomCodeInput" class="form-control" placeholder="Введите код комнаты">
+            </div>
+            <div class="col-6 d-flex justify-content-center align-items-center h-100 state-call" id="roomCodeDisplay"></div>
+            <div class="col-6 d-flex justify-content-center align-items-center h-100 state-call">
+                <button class="btn btn-primary" onclick="leaveRoom()">Покинуть комнату</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client.js"></script>
+    <script src="/style.js"></script>
+</body>
+</html>
