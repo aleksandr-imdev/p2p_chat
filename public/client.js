@@ -3,6 +3,17 @@ function generateRoomCode() {
     return Math.random().toString(36).substring(2, 12).toUpperCase();
 }
 
+const iceConfiguration = {
+    iceServers: [
+        { urls: 'stun:stun.l.google.com:19302' },
+        {
+            urls: 'turn:openrelay.metered.ca:80',
+            username: 'openrelayproject',
+            credentials: 'openrelayproject'
+        }
+    ]
+}
+
 const socket = io();
 let peerConnection = null;
 let srcTemp = null;
@@ -71,7 +82,8 @@ function joinRoomByCode(roomCode) {
             }
 
             // Устанавливаем соединение WebRTC для видеозвонка
-            peerConnection = new RTCPeerConnection();
+            
+            peerConnection = new RTCPeerConnection(iceConfiguration);
             peerConnection.oniceconnectionstatechange = function(event) {
                 console.log('ICE Connection State:', peerConnection.iceConnectionState);
             
